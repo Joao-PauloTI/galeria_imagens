@@ -1,40 +1,34 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import Banner from "./Banner";
 import axios from 'axios'
-import Grid from '@material-ui/core/Grid'
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 
-interface Props { }
+interface Props {
+
+}
 
 interface State {
     imagens: Array<any>
+    totalImagens: String
 }
 
 export default class Galeria extends Component<Props, State> {
+    readonly url_base = 'https://pixabay.com/api/?key=17238907-5977b50b3e961ac65649095d7&safesearch=true'
+
     state: State = {
-        imagens: []
+        imagens: [],
+        totalImagens: ''
     }
 
     componentDidMount() {
-        axios.get('https://picsum.photos/v2/list?limit=10')
+        axios.get(`${this.url_base}&per_page=15`)
             .then((res) => {
                 this.setState({
-                    imagens: res.data.map((imagem) => {
+                    totalImagens: res.data.total,
+                    imagens: res.data.hits.map((imagem) => {
                         return (
-                            <GridListTile key={imagem.id} cols={1}>
-                                <img src={imagem.download_url} alt={imagem.author}></img>
-                                <GridListTileBar
-                                    subtitle={<span>Por: {imagem.author}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`Detalhes sobre esta imagem`} >
-                                            <InfoIcon style={{color: 'white'}} />
-                                        </IconButton>
-                                    }
-                                />
-                            </GridListTile>
+                            <div className={"col-md-4"} key={imagem.id} style={{paddingBottom: "5px", paddingTop: "5px"}}>
+                                <img src={imagem.webformatURL} className={"img-thumbnail"} style={{width: "100%", height: "300px"}} alt={"Pixabay"}/>
+                            </div>
                         )
                     })
                 })
@@ -47,11 +41,12 @@ export default class Galeria extends Component<Props, State> {
     render() {
         return (
             <div>
-                <Grid container>
-                    <GridList cellHeight={560} cols={3}>
+                <Banner/>
+                <div className={"container"}>
+                    <div className={"row"}>
                         {this.state.imagens}
-                    </GridList>
-                </Grid>
+                    </div>
+                </div>
             </div>
         )
     }
