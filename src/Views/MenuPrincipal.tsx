@@ -9,12 +9,12 @@ export default function MenuPrincipal() {
                         <a className={"nav-link"} href={"#"} data-toggle={"dropdown"}>
                             <span className="navbar-toggler-icon"></span>
                         </a>
-                        <div className={"dropdown-menu"}>
-                            <a className={"dropdown-item"} href={'https://github.com/Joao-PauloTI/galeria_imagens'}
+                        <div className={"dropdown-menu bg-dark"}>
+                            <a className={"dropdown-item text-white bg-dark"} href={'https://github.com/Joao-PauloTI/galeria_imagens'}
                                target={'_blank'}>
                                 GitHub do Projeto
                             </a>
-                            <a className="dropdown-item" href={'https://pixabay.com/api/docs/'} target={'_blank'}>
+                            <a className={"dropdown-item text-white bg-dark"} href={'https://pixabay.com/api/docs/'} target={'_blank'}>
                                 Pixabay Api
                             </a>
                         </div>

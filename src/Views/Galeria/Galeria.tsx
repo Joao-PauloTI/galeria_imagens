@@ -50,6 +50,12 @@ export default class Galeria extends Component<Props, State> {
                 this.setState({
                     totalImagens: res.data.total,
                     imagens: res.data.hits.map((imagem) => {
+                        let imagemTag
+                        if (imagem.tags.length > 30) {
+                            imagemTag = imagem.tags.slice(0, 26).concat('...')
+                        } else {
+                            imagemTag = imagem.tags
+                        }
                         return (
                             <div className={"col-md-4"} key={imagem.id} style={{paddingBottom: "1%", paddingTop: "1%"}}>
                                 <div className={"card text-white bg-dark"}>
@@ -61,9 +67,11 @@ export default class Galeria extends Component<Props, State> {
                                     <div className={"card-body"} style={{padding: "2%"}}>
                                         <div className={"row"}>
                                             <div className={"col-md-6"}>
-                                                <h5><span className={"badge badge-info"}>{imagem.tags}</span></h5>
                                                 <small>{imagem.views} Visualizações</small>
-                                                <a href={"/imagem/"+imagem.id} className={"btn btn-outline-light"}>Detalhes</a>
+                                                <a href={"/imagem/"+imagem.id} target={"_blank"} className={"btn btn-outline-light"}>Detalhes</a>
+                                                <h6 style={{marginTop: "5%"}}>
+                                                    Tags: <br/><span className={"badge badge-info"} style={{fontFamily: "sans-serif"}}>{imagemTag}</span>
+                                                </h6>
                                             </div>
                                             <div className={"col-md-6"}>
                                                 <img src={imagem.userImageURL}
@@ -101,6 +109,9 @@ export default class Galeria extends Component<Props, State> {
             <div>
                 <Banner/>
                 <div className={"container-fluid"}>
+                    <div id={"topoGaleria"} className={"container"} style={{paddingTop: "5%"}}>
+                        <h4 style={{color: "white", textAlign: "center"}}>A <a href={"https://pixabay.com/"} target={"_blank"} style={{color: "white"}}><strong>Pixabay</strong></a> dispõe de mais de <strong>1,8 milhões</strong> de imagens fantásticas e vídeos de alta qualidade compartilhados por usuários do mundo inteiro!</h4>
+                    </div>
                     <div className={"row"}>
                         {this.state.imagens}
                     </div>
@@ -112,57 +123,57 @@ export default class Galeria extends Component<Props, State> {
                                        onClick={() => this.mudarPagina('anterior')}
                                        style={{color: "white", backgroundColor: "#343a40"}}
                                        aria-label={"Anterior"}
-                                       href={`#pagina=${this.state.pagina}`}>
+                                       href={"#topoGaleria"}>
                                         <span aria-hidden={"true"}>&laquo;</span>
                                         <span className={"sr-only"}>Anterior</span>
                                     </a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(1)}
-                                       href={`#pagina=${this.state.pagina}`}>1</a>
+                                       href={"#topoGaleria"}>1</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(2)}
-                                       href={`#pagina=${this.state.pagina}`}>2</a>
+                                       href={"#topoGaleria"}>2</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(3)}
-                                       href={`#pagina=${this.state.pagina}`}>3</a>
+                                       href={"#topoGaleria"}>3</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(4)}
-                                       href={`#pagina=${this.state.pagina}`}>4</a>
+                                       href={"#topoGaleria"}>4</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(5)}
-                                       href={`#pagina=${this.state.pagina}`}>5</a>
+                                       href={"#topoGaleria"}>5</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(6)}
-                                       href={`#pagina=${this.state.pagina}`}>6</a>
+                                       href={"#topoGaleria"}>6</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(7)}
-                                       href={`#pagina=${this.state.pagina}`}>7</a>
+                                       href={"#topoGaleria"}>7</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(8)}
-                                       href={`#pagina=${this.state.pagina}`}>8</a>
+                                       href={"#topoGaleria"}>8</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(9)}
-                                       href={`#pagina=${this.state.pagina}`}>9</a>
+                                       href={"#topoGaleria"}>9</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"} style={{color: "white", backgroundColor: "#343a40"}} onClick={() => this.mudarPagina(10)}
-                                       href={`#pagina=${this.state.pagina}`}>10</a>
+                                       href={"#topoGaleria"}>10</a>
                                 </li>
                                 <li className={"page-item"}>
                                     <a className={"page-link"}
                                        style={{color: "white", backgroundColor: "#343a40"}}
                                        onClick={() => this.mudarPagina('proximo')}
                                        aria-label={"Próximo"}
-                                       href={`#pagina=${this.state.pagina}`}>
+                                       href={"#topoGaleria"}>
                                         <span aria-hidden={"true"}>&raquo;</span>
                                         <span className={"sr-only"}>Próximo</span>
                                     </a>

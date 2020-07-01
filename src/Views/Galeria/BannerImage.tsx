@@ -1,6 +1,12 @@
-import React, {Component} from "react";
+import React, {Component, CSSProperties} from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
+
+const badgeCss: CSSProperties = {
+    fontFamily: "sans-serif",
+    whiteSpace: "inherit",
+    textAlign: "left"
+}
 
 interface Props {
 
@@ -38,7 +44,7 @@ export default class Banner extends Component<Props, State> {
                         this.setState({
                             banner: res.data.hits.map((imagem) => {
                                 return (
-                                    <div key={imagem.id} className="row">
+                                    <div key={imagem.id} className="row" style={{paddingBottom: "1%"}}>
                                         <div className={"bg-transparent text-white col-md-7"}>
                                             <img className={"card-img"} src={imagem.largeImageURL} style={{opacity: "1"}}/>
                                         </div>
@@ -52,15 +58,17 @@ export default class Banner extends Component<Props, State> {
                                                             </h3>
                                                         </div>
                                                         <div style={{marginTop:"30px"}}>
-                                                            <p>Tags: {imagem.tags}</p>
                                                             <p>Curtidas: {imagem.likes}</p>
                                                             <p>Favoritos: {imagem.favorites}</p>
                                                             <p>Visualizações: {imagem.views}</p>
-                                                            <p>Comentarios: {imagem.comments}</p>
+                                                            <p>Comentários: {imagem.comments}</p>
                                                             <p>Downloads: {imagem.downloads}</p>
                                                             <p>Tipo: {imagem.type}</p>
                                                             <p>
-                                                                <a className={"btn btn-info"} href={imagem.pageURL}>Mais Detalhes</a>
+                                                                Tags: <span className={"badge badge-info"} style={badgeCss}>{imagem.tags}</span>
+                                                            </p>
+                                                            <p>
+                                                                <a className={"btn btn-info"} target={"_blank"} href={imagem.pageURL}>Mais Detalhes</a>
                                                             </p>
                                                         </div>
                                                     
