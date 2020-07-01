@@ -63,7 +63,7 @@ export default class Galeria extends Component<Props, State> {
                                             <div className={"col-md-6"}>
                                                 <h5><span className={"badge badge-info"}>{imagem.tags}</span></h5>
                                                 <small>{imagem.views} Visualizações</small>
-                                                <a href={"/imagem"} className={"btn btn-outline-light"}>Detalhes</a>
+                                                <a href={"/imagem/"+imagem.id} className={"btn btn-outline-light"}>Detalhes</a>
                                             </div>
                                             <div className={"col-md-6"}>
                                                 <img src={imagem.userImageURL}

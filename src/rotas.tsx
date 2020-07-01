@@ -1,13 +1,15 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import Galeria from './Views/Galeria/Galeria'
-import Imagem from './Views/Imagem/Imagem'
+import Imagem from './Views/Galeria/Imagem'
 
 export default function Rotas() {
     return (
-        <Switch>
-            <Route path='/' exact component={Galeria} />
-            <Route path='/imagem' component={Imagem} />
-        </Switch>
+        <Router>
+            <Switch>
+                <Route path='/' exact component={Galeria} />
+                <Route path='/imagem/:id' component={Imagem} />
+            </Switch>
+        </Router>
     )
 }
